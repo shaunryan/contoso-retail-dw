@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DatabaseProjectContosoRetailDW</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{7452C543-0E07-4C36-8829-C1136C07B26A}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DatabaseProjectContosoRetailDW</RootNamespace>
+    <AssemblyName>DatabaseProjectContosoRetailDW</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(NetCoreBuild)' == 'true'" Project="$(NETCoreTargetsPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <PackageReference Condition="'$(NetCoreBuild)' == 'true'" Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Views" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\StoredProcedures" />
+    <Folder Include="DaxBook_Config" />
+    <Folder Include="DaxBook_Config\Views" />
+    <Folder Include="DaxBook" />
+    <Folder Include="DaxBook\Views" />
+    <Folder Include="DataModeling" />
+    <Folder Include="DataModeling\Views" />
+    <Folder Include="ContosoBi" />
+    <Folder Include="ContosoBi\Views" />
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
+  </Target>
+  <ItemGroup>
+    <Build Include="Security\SqlRoleMembership.sql" />
+    <Build Include="Security\NT SERVICE_msolap_tabular.sql" />
+    <Build Include="Security\NT SERVICE_MSOLAP_TAB17.sql" />
+    <Build Include="Security\NT SERVICE_MSOLAP_TAB16.sql" />
+    <Build Include="Security\NT SERVICE_MSOLAP_TAB12.sql" />
+    <Build Include="Security\DaxBook_Config.sql" />
+    <Build Include="Security\DaxBook.sql" />
+    <Build Include="Security\DataModeling.sql" />
+    <Build Include="Security\ContosoBi.sql" />
+    <Build Include="dbo\Views\V_ProductForecast.sql" />
+    <Build Include="dbo\Views\V_OnlineSalesOrderDetail.sql" />
+    <Build Include="dbo\Views\V_OnlineSalesOrder.sql" />
+    <Build Include="dbo\Views\V_CustomerPromotion.sql" />
+    <Build Include="dbo\Views\V_CustomerOrders.sql" />
+    <Build Include="dbo\Views\V_Customer.sql" />
+    <Build Include="dbo\Tables\FactStrategyPlan.sql" />
+    <Build Include="dbo\Tables\FactSalesQuota.sql" />
+    <Build Include="dbo\Tables\FactSales.sql" />
+    <Build Include="dbo\Tables\FactOnlineSales.sql" />
+    <Build Include="dbo\Tables\FactITSLA.sql" />
+    <Build Include="dbo\Tables\FactITMachine.sql" />
+    <Build Include="dbo\Tables\FactInventory.sql" />
+    <Build Include="dbo\Tables\FactExchangeRate.sql" />
+    <Build Include="dbo\Tables\DimStore.sql" />
+    <Build Include="dbo\Tables\DimScenario.sql" />
+    <Build Include="dbo\Tables\DimSalesTerritory.sql" />
+    <Build Include="dbo\Tables\DimPromotion.sql" />
+    <Build Include="dbo\Tables\DimProductSubcategory.sql" />
+    <Build Include="dbo\Tables\DimProductCategory.sql" />
+    <Build Include="dbo\Tables\DimProduct.sql" />
+    <Build Include="dbo\Tables\DimOutage.sql" />
+    <Build Include="dbo\Tables\DimMachine.sql" />
+    <Build Include="dbo\Tables\DimGeography.sql" />
+    <Build Include="dbo\Tables\DimEntity.sql" />
+    <Build Include="dbo\Tables\DimEmployee.sql" />
+    <Build Include="dbo\Tables\DimDate.sql" />
+    <Build Include="dbo\Tables\DimCustomer.sql" />
+    <Build Include="dbo\Tables\DimCurrency.sql" />
+    <Build Include="dbo\Tables\DimChannel.sql" />
+    <Build Include="dbo\Tables\DimAccount.sql" />
+    <Build Include="dbo\StoredProcedures\P_FactStrategyPlan.sql" />
+    <Build Include="dbo\StoredProcedures\P_FactSalesQuota.sql" />
+    <Build Include="dbo\StoredProcedures\DropSchemaViews.sql" />
+    <Build Include="dbo\StoredProcedures\DropSchema.sql" />
+    <Build Include="DaxBook_Config\Views\FilterRatio.sql" />
+    <Build Include="DaxBook\Views\Store.sql" />
+    <Build Include="DaxBook\Views\Store Sales.sql" />
+    <Build Include="DaxBook\Views\Sales.sql" />
+    <Build Include="DaxBook\Views\Promotion.sql" />
+    <Build Include="DaxBook\Views\Product.sql" />
+    <Build Include="DaxBook\Views\Product Subcategory.sql" />
+    <Build Include="DaxBook\Views\Product Category.sql" />
+    <Build Include="DaxBook\Views\Order Date.sql" />
+    <Build Include="DaxBook\Views\Inventory.sql" />
+    <Build Include="DaxBook\Views\Employee.sql" />
+    <Build Include="DaxBook\Views\Due Date.sql" />
+    <Build Include="DaxBook\Views\Delivery Date.sql" />
+    <Build Include="DaxBook\Views\Date.sql" />
+    <Build Include="DaxBook\Views\Customer.sql" />
+    <Build Include="DaxBook\Views\Currency.sql" />
+    <Build Include="DaxBook\Views\Channel.sql" />
+    <Build Include="DataModeling\Views\Store.sql" />
+    <Build Include="DataModeling\Views\SalesByCategory.sql" />
+    <Build Include="DataModeling\Views\Sales.sql" />
+    <Build Include="DataModeling\Views\Purchases.sql" />
+    <Build Include="DataModeling\Views\Promotion.sql" />
+    <Build Include="DataModeling\Views\Product.sql" />
+    <Build Include="DataModeling\Views\Product Subcategory.sql" />
+    <Build Include="DataModeling\Views\Product Category.sql" />
+    <Build Include="DataModeling\Views\Date.sql" />
+    <Build Include="DataModeling\Views\Customer.sql" />
+    <Build Include="DataModeling\Views\AllSalesDenormalized.sql" />
+    <Build Include="DataModeling\Views\AllSales.sql" />
+    <Build Include="DataModeling\Views\AllPurchasesDenormalized.sql" />
+    <Build Include="DataModeling\Views\AllPurchases.sql" />
+    <Build Include="ContosoBi\Views\Store.sql" />
+    <Build Include="ContosoBi\Views\Sales2015.sql" />
+    <Build Include="ContosoBi\Views\Sales.sql" />
+    <Build Include="ContosoBi\Views\Product.sql" />
+    <Build Include="ContosoBi\Views\Date.sql" />
+  </ItemGroup>
+</Project>

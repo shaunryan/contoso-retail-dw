@@ -1,0 +1,6 @@
+CREATE SCHEMA [DaxBook]
+    AUTHORIZATION [dbo];
+
+
+GO
+
